@@ -1,28 +1,14 @@
-var app = require('koa')(),
+const app = require('koa')(),
     koa = require('koa-router')(),
     logger = require('koa-logger'),
     json = require('koa-json'),
     views = require('koa-views'),
     onerror = require('koa-onerror');
 
-var index = require('./routes/index');
-var users = require('./routes/users');
+const index = require('./routes/index');
+const users = require('./routes/users');
+const auth = require('./routes/auth');
 
-var mysql = require("mysql2");
-
-var connection = mysql.createConnection({
-    host: '127.0.0.1',
-    user: 'root',
-    password: 'far0000',
-    database: 'angry_api',
-    port: '3306'
-});
-
-connection.execute('SELECT * FROM `user`', function(err, results, fields) {
-    console.log(err);
-    console.log(results);
-    console.log(fields);
-});
 // global middlewares
 app.use(views('views', {
     root: __dirname + '/views',
@@ -44,6 +30,7 @@ app.use(require('koa-static')(__dirname + '/public'));
 // routes definition
 koa.use('/', index.routes(), index.allowedMethods());
 koa.use('/users', users.routes(), users.allowedMethods());
+koa.use('/auth', auth.routes(), users.allowedMethods());
 
 // mount root routes
 app.use(koa.routes());

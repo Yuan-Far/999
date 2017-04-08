@@ -1,5 +1,4 @@
 ### This is api
 
-* npm install 
-
+* npm install || cnpm install
 * npm start 

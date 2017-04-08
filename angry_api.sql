@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50717
 File Encoding         : 65001
 
-Date: 2016-12-27 22:44:57
+Date: 2017-04-06 19:22:00
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -26,8 +26,8 @@ CREATE TABLE `article` (
   `content` varchar(255) DEFAULT NULL,
   `status` varchar(255) DEFAULT NULL,
   `author` varchar(255) DEFAULT NULL,
-  `create_time` date DEFAULT NULL,
-  `modify_time` date DEFAULT NULL,
+  `create_time` varchar(16) DEFAULT NULL,
+  `modify_time` varchar(16) DEFAULT NULL,
   PRIMARY KEY (`article_id`),
   KEY `author` (`author`),
   KEY `index_title` (`title`) USING BTREE
@@ -42,7 +42,7 @@ CREATE TABLE `bug` (
   `title` varchar(255) DEFAULT NULL,
   `content` varchar(255) DEFAULT NULL,
   `author` varchar(255) DEFAULT NULL,
-  `create_time` datetime DEFAULT NULL,
+  `create_time` varchar(16) DEFAULT NULL,
   PRIMARY KEY (`bug_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -53,8 +53,8 @@ DROP TABLE IF EXISTS `category`;
 CREATE TABLE `category` (
   `category_id` int(11) NOT NULL,
   `title` varchar(255) DEFAULT NULL,
-  `create_time` date DEFAULT NULL,
-  `modify_time` date DEFAULT NULL,
+  `create_time` varchar(16) DEFAULT NULL,
+  `modify_time` varchar(16) DEFAULT NULL,
   PRIMARY KEY (`category_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -111,6 +111,6 @@ CREATE TABLE `user` (
   `pic` varchar(255) DEFAULT NULL,
   `addr` varchar(255) DEFAULT NULL,
   `summary` varchar(255) DEFAULT NULL,
-  `create_time` date DEFAULT NULL,
+  `create_time` varchar(16) DEFAULT NULL,
   PRIMARY KEY (`user_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;

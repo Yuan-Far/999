@@ -34,11 +34,11 @@ module.exports = function(sequelize, DataTypes) {
             allowNull: true
         },
         create_time: {
-            type: DataTypes.DATE,
+            type: DataTypes.STRING,
             allowNull: true
         },
         modify_time: {
-            type: DataTypes.DATE,
+            type: DataTypes.STRING,
             allowNull: true
         }
     }, {tableName: 'article'});

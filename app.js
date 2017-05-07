@@ -3,7 +3,9 @@ const app = require('koa')(),
     logger = require('koa-logger'),
     json = require('koa-json'),
     views = require('koa-views'),
-    onerror = require('koa-onerror');
+    onerror = require('koa-onerror'),
+    api = require('./routes/api.js'),
+    jwt = require('koa-jwt');
 
 const index = require('./routes/index');
 const users = require('./routes/users');
@@ -24,13 +26,30 @@ app.use(function*(next) {
     var ms = new Date - start;
     console.log('%s %s - %s', this.method, this.url, ms);
 });
-
+// app.use(function *(next){  //  如果JWT验证失败，返回验证失败信息
+//     try {
+//         yield next;
+//     } catch (err) {
+//     if (401 == err.status) {
+//         this.status = 401;
+//         this.body = {
+//             success: false,
+//             token: null,
+//             info: 'Protected resource, use Authorization header to get access'
+//         };
+//     } else {
+//         throw err;
+//         }
+//     }
+// });
 app.use(require('koa-static')(__dirname + '/public'));
 
 // routes definition
 koa.use('/', index.routes(), index.allowedMethods());
 koa.use('/users', users.routes(), users.allowedMethods());
 koa.use('/auth', auth.routes(), users.allowedMethods());
+
+koa.use('/api', api.routes(), users.allowedMethods())
 
 // mount root routes
 app.use(koa.routes());

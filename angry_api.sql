@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50717
 File Encoding         : 65001
 
-Date: 2017-04-06 19:22:00
+Date: 2017-04-09 00:11:50
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -20,7 +20,7 @@ SET FOREIGN_KEY_CHECKS=0;
 -- ----------------------------
 DROP TABLE IF EXISTS `article`;
 CREATE TABLE `article` (
-  `article_id` int(11) NOT NULL,
+  `article_id` int(11) NOT NULL AUTO_INCREMENT,
   `title` varchar(255) DEFAULT NULL,
   `pic` varchar(255) DEFAULT NULL,
   `content` varchar(255) DEFAULT NULL,
@@ -34,11 +34,15 @@ CREATE TABLE `article` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- ----------------------------
+-- Records of article
+-- ----------------------------
+
+-- ----------------------------
 -- Table structure for bug
 -- ----------------------------
 DROP TABLE IF EXISTS `bug`;
 CREATE TABLE `bug` (
-  `bug_id` int(11) NOT NULL,
+  `bug_id` int(11) NOT NULL AUTO_INCREMENT,
   `title` varchar(255) DEFAULT NULL,
   `content` varchar(255) DEFAULT NULL,
   `author` varchar(255) DEFAULT NULL,
@@ -47,16 +51,24 @@ CREATE TABLE `bug` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- ----------------------------
+-- Records of bug
+-- ----------------------------
+
+-- ----------------------------
 -- Table structure for category
 -- ----------------------------
 DROP TABLE IF EXISTS `category`;
 CREATE TABLE `category` (
-  `category_id` int(11) NOT NULL,
+  `category_id` int(11) NOT NULL AUTO_INCREMENT,
   `title` varchar(255) DEFAULT NULL,
   `create_time` varchar(16) DEFAULT NULL,
   `modify_time` varchar(16) DEFAULT NULL,
   PRIMARY KEY (`category_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of category
+-- ----------------------------
 
 -- ----------------------------
 -- Table structure for collection_article
@@ -73,6 +85,10 @@ CREATE TABLE `collection_article` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- ----------------------------
+-- Records of collection_article
+-- ----------------------------
+
+-- ----------------------------
 -- Table structure for collection_category
 -- ----------------------------
 DROP TABLE IF EXISTS `collection_category`;
@@ -85,6 +101,10 @@ CREATE TABLE `collection_category` (
   CONSTRAINT `fk_collection_c` FOREIGN KEY (`category_id`) REFERENCES `category` (`category_id`) ON UPDATE CASCADE,
   CONSTRAINT `fk_collection_category` FOREIGN KEY (`user_id`) REFERENCES `user` (`user_id`) ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of collection_category
+-- ----------------------------
 
 -- ----------------------------
 -- Table structure for middle
@@ -100,11 +120,15 @@ CREATE TABLE `middle` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- ----------------------------
+-- Records of middle
+-- ----------------------------
+
+-- ----------------------------
 -- Table structure for user
 -- ----------------------------
 DROP TABLE IF EXISTS `user`;
 CREATE TABLE `user` (
-  `user_id` int(11) NOT NULL,
+  `user_id` int(11) NOT NULL AUTO_INCREMENT,
   `username` varchar(255) DEFAULT NULL,
   `password` varchar(255) DEFAULT NULL,
   `email` varchar(255) DEFAULT NULL,
@@ -114,3 +138,7 @@ CREATE TABLE `user` (
   `create_time` varchar(16) DEFAULT NULL,
   PRIMARY KEY (`user_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of user
+-- ----------------------------

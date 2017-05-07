@@ -7,23 +7,46 @@ const User = projectDb.import(userModel);
 
 const getUserById = function* (id) {
     const userInfo = yield User.findOne({
-        where: {
-            user_id: id
+        'where': {
+            'user_id': id
         }
     });
     return userInfo;
 }
-const getUserName = function *(name){
+const editUser = function* (id, data) {
+    const userInfo = yield User.update({
+        'pic': data.pic,
+        'email': data.email,
+        'password': data.password,
+        'summary': data.summary,
+        'addr': data.addr,
+        'username': data.username,
+        'modify_time': parseInt(new Date().getTime()/1000, 10)
+    })
+    return userInfo;
+}
+//获取用户名
+const getUserName = function* (name){
     const userInfo = yield User.findOne({
-        where: {
-            username: name
+        'where': {
+            'username': name
         }
 
     });
     return userInfo;
 }
-
+//新建用户
+const createUser = function* (data){
+    const userInfo = yield User.create({
+        'username': data.username,
+        'password': data.password,
+        'create_time': parseInt(new Date().getTime()/1000, 10)
+    })
+    return userInfo;
+}
 module.exports = {
     getUserById,
-    getUserName
+    getUserName,
+    createUser,
+    editUser
 }

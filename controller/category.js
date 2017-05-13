@@ -1,6 +1,20 @@
 const category = require('../models/category.js');
 const jwt = require('jsonwebtoken');
 
+const getArticleList = function* () {
+    const categoryId = this.query.category_id
+    try {
+        const result = yield category.getArticleCategory(categoryId)
+    }catch (e) {
+        console.log(e)
+    }
+    
+    this.body = {
+        'code': 1,
+        'msg': 'success',
+        'result': result
+    }
+}
 const getCategoryInfo = function* () {
     const result = yield category.getCategory()
     this.body = result
@@ -12,6 +26,7 @@ const getCategoryMsg = function* (id) {
 }
 const postCategoryInfo = function* () {
     const data = this.request.body
+    
     const result = yield category.createCategory(data)
     
     if(result !== null) { 
@@ -45,6 +60,7 @@ const delCategoryInfo = function* () {
     }
 }
 module.exports = {
+    getArticleList,
     getCategoryInfo,
     getCategoryMsg,
     postCategoryInfo,

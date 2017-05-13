@@ -6,6 +6,7 @@
     "start": "node ./bin/www"
   },
   "dependencies": {
+    "busboy": "^0.2.14",
     "co": "^4.6.0",
     "debug": "^2.2.0",
     "jade": "~1.11.0",

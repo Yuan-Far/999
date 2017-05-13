@@ -1,9 +1,11 @@
 const category = require('../controller/category.js');
 const article = require('../controller/article.js');
 const collection = require('../controller/collection.js');
+const upload = require('../controller/upload.js');
 const router = require('koa-router')();
 
 //Category->分类
+router.get('/article_list', category.getArticleList);
 router.get('/category_info', category.getCategoryInfo);
 router.get('/category_msg/:id', category.getCategoryMsg);
 router.post('/create_category', category.postCategoryInfo);
@@ -22,5 +24,8 @@ router.post('/collection_category', collection.collectionCategoryMsg)
 router.delete('/cancel_category/:user_id/:category_id', collection.cancelCollectionCategoryMsg)
 router.post('/collection_article', collection.collectionArticleMsg)
 router.delete('/cancel_article/:user_id/:category_id', collection.cancelCollectionArticleMsg)
+
+//Upload-> 上传
+router.post('/upload_img', upload.uploadFile)
 
 module.exports = router; // 导出router规则

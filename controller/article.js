@@ -11,8 +11,9 @@ const getArticleMsg = function* (id) {
 }
 const postArticleInfo = function* () {
     const data = this.request.body
+    console.log(data)
     const result = yield article.createArticle(data)
-    
+    // console.log(result)
     if(result !== null) { 
         this.body = {
             code: 1,

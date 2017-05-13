@@ -22,11 +22,10 @@ const getArticle = function* () {
 }
 const createArticle = function* (data) {
     const article = yield Article.create({
-        'pic': data.pic,
+        'pic': data.pic || '/public/img/ico.png',
         'title': data.title,
-        'pic': data.pic,
         'content': data.content,
-        'author': data.author,
+        'author': data.author || 'Yuan',
         'create_time': parseInt(new Date().getTime()/1000, 10)
     })
     return true

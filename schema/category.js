@@ -23,6 +23,10 @@ module.exports = function(sequelize, DataTypes) {
     modify_time: {
       type: DataTypes.STRING,
       allowNull: true
+    },
+    user_id: {
+      type: DataTypes.INTEGER(11),
+      allowNull: true
     }
   }, {
     tableName: 'category'

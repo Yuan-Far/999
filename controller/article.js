@@ -1,7 +1,7 @@
 const article = require('../models/article.js');
 
 const getArticleInfo = function* () {
-    const result = yield category.getArticle()
+    const result = yield article.getArticle()
     this.body = result
 }
 const getArticleMsg = function* (id) {

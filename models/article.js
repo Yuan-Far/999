@@ -15,11 +15,13 @@ const getArticleById = function* (id) {
     return article
 }
 const getArticle = function* () {
-    const article = yield Category.findAll({
+    const articleInfoList = yield Article.findAll({
         attributes: ['article_id', 'status', 'content', 'author', 'pic', 'title', 'create_time']
     })
-    return article
+    
+    return articleInfoList
 }
+
 const createArticle = function* (data) {
     const article = yield Article.create({
         'pic': data.pic || '/public/img/ico.png',

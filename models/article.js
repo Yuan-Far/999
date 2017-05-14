@@ -1,9 +1,12 @@
 const db = require('../config/db.js'),
-    articleModel = '../schema/article.js';
-
+    articleModel = '../schema/article.js',
+    categoryModel = '../schema/category.js',
+    middleModel = '../schema/middle.js'
 const projectDb = db.Connect;
 
 const Article = projectDb.import(articleModel);
+const Category = projectDb.import(categoryModel);
+const Middle = projectDb.import(middleModel); 
 
 const getArticleById = function* (id) {
     const article = yield Article.findAll({
@@ -17,6 +20,7 @@ const getArticleById = function* (id) {
 const getArticle = function* () {
     const articleInfoList = yield Article.findAll({
         attributes: ['article_id', 'status', 'content', 'author', 'pic', 'title', 'create_time']
+        // include: Category
     })
     
     return articleInfoList
@@ -24,7 +28,7 @@ const getArticle = function* () {
 
 const createArticle = function* (data) {
     const article = yield Article.create({
-        'pic': data.pic || '/public/img/ico.png',
+        'pic': data.pic || 'http://localhost:3000/img/ico.png',
         'title': data.title,
         'content': data.content,
         'author': data.author || 'Yuan',

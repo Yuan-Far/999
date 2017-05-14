@@ -43,7 +43,7 @@ const getCategory = function* () {
 }
 const createCategory = function* (data) {
     const category = yield Category.create({
-        'pic': data.pic || '/public/img/ico.png',
+        'pic': data.pic || 'http://localhost:3000/img/ico.png',
         'title': data.title,
         'create_time': parseInt(new Date().getTime()/1000, 10)
     })

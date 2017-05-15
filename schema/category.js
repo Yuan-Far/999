@@ -30,5 +30,7 @@ module.exports = function(sequelize, DataTypes) {
     }
   }, {
     tableName: 'category'
+  }, { 
+    timestamps: false 
   });
 };

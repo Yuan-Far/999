@@ -11,6 +11,7 @@
     "debug": "^2.2.0",
     "jade": "~1.11.0",
     "jsonwebtoken": "^7.3.0",
+    "jwt-decode": "^2.2.0",
     "koa": "^1.1.2",
     "koa-bodyparser": "^2.0.1",
     "koa-json": "^1.1.1",

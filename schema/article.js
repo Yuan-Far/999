@@ -39,8 +39,14 @@ module.exports = function(sequelize, DataTypes) {
     user_id: {
       type: DataTypes.INTEGER(11),
       allowNull: true
+    },
+    category_id: {
+      type: DataTypes.INTEGER(11),
+      allowNull: true
     }
   }, {
     tableName: 'article'
+  }, { 
+    timestamps: false 
   });
 };

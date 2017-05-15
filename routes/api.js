@@ -5,16 +5,19 @@ const upload = require('../controller/upload.js');
 const router = require('koa-router')();
 
 //Category->分类
-router.get('/article_list', category.getArticleList);
+router.get('/article_list/:category_id', category.getArticleList);
 router.get('/category_info', category.getCategoryInfo);
-router.get('/category_msg/:id', category.getCategoryMsg);
+router.get('/category_msg/:category_id', category.getCategoryMsg);
+router.get('/category_user/:user_id', category.getCategoryUserList);
 router.post('/create_category', category.postCategoryInfo);
 router.put('/edit_category/:id', category.editCategoryInfo);
 router.delete('/del_category/:id', category.delCategoryInfo);
 
+
 //Article->文章
 router.get('/article_info', article.getArticleInfo);
 router.get('/article_msg/:id', article.getArticleMsg);
+router.get('/article_category/:category_id', article.getArticleCategory);
 router.post('/create_article', article.postArticleInfo);
 router.put('/edit_article/:id', article.editArticleInfo);
 router.delete('/del_article/:id', article.delArticleInfo);

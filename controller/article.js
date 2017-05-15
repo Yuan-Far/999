@@ -9,11 +9,26 @@ const getArticleMsg = function* (id) {
     const result = yield article.getArticleById(sort_id)
     this.body = result
 }
+const getArticleCategory = function* (category_id){
+    const categoryId = this.params.category_id
+    try {
+        const result = yield article.getArticleByCategory(categoryId)
+        this.body = {
+            'code': 1,
+            'msg': 'Success',
+            'result': result
+        }
+    }catch(e){
+        this.body = {
+            'code': -1,
+            'msg':e.message
+        }
+    }
+    
+}
 const postArticleInfo = function* () {
     const data = this.request.body
-    console.log(data)
     const result = yield article.createArticle(data)
-    // console.log(result)
     if(result !== null) { 
         this.body = {
             code: 1,
@@ -49,5 +64,6 @@ module.exports = {
     getArticleMsg,
     postArticleInfo,
     editArticleInfo,
-    delArticleInfo
+    delArticleInfo,
+    getArticleCategory
 }

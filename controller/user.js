@@ -40,15 +40,60 @@ const postUserAuth = function* () {
     }
 } 
 
-const editUserInfo = function* () {
-    const user_id = this.params.id
+const editUserName = function* () {
+    const user_id = this.params.user_id
+    // console.log(this.params)
     const data = this.request.body
-    const result = yield category.editUser( user_id, data)  
-    
-    if(result !== null) { 
+    try {
+        const result = yield user.editUser( user_id, data)
         this.body = {
             code: 1,
-            msg: "User is modified"
+            msg: "User is modified",
+            result: result
+        }
+    }catch(e) {
+        console.log(e)
+        this.body = {
+            'code': -1,
+            'msg': e.message
+        }
+    }
+}
+const editUserEmail = function* () {
+    const user_id = this.params.user_id
+    // console.log(this.params)
+    const data = this.request.body
+    try {
+        const result = yield user.editUser( user_id, data)
+        this.body = {
+            code: 1,
+            msg: "User is modified",
+            result: result
+        }
+    }catch(e) {
+        console.log(e)
+        this.body = {
+            'code': -1,
+            'msg': e.message
+        }
+    }
+}
+const editUserSummary = function* () {
+    const user_id = this.params.user_id
+    // console.log(this.params)
+    const data = this.request.body
+    try {
+        const result = yield user.editUser( user_id, data)
+        this.body = {
+            code: 1,
+            msg: "User is modified",
+            result: result
+        }
+    }catch(e) {
+        console.log(e)
+        this.body = {
+            'code': -1,
+            'msg': e.message
         }
     }
 }
@@ -81,7 +126,9 @@ module.exports = {
         router.get('/user/:id', getUserInfo);
         router.post('/user', postUserAuth);
         router.post('/reg', postUserCreate);
-        router.put('/edit', editUserInfo);
+        router.put('/edit_user/:user_id', editUserName);
+        router.put('/edit_email/:user_id', editUserEmail);
+        router.put('/edit_summary/:user_id', editUserSummary);
         //router.post('/logout', postLogout);
     }
 }

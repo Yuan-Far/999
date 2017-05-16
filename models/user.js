@@ -13,8 +13,9 @@ const getUserById = function* (id) {
     });
     return userInfo;
 }
-const editUser = function* (id, data) {
-    const userInfo = yield User.update({
+const editUser = function* (user_id, data) {
+    const userInfo = yield User.update(
+    {
         'pic': data.pic,
         'email': data.email,
         'password': data.password,
@@ -22,6 +23,10 @@ const editUser = function* (id, data) {
         'addr': data.addr,
         'username': data.username,
         'modify_time': parseInt(new Date().getTime()/1000, 10)
+    },{
+        'where':{
+            'user_id': user_id
+        }
     })
     return userInfo;
 }

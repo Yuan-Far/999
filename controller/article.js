@@ -59,11 +59,28 @@ const delArticleInfo = function* () {
         }
     }
 }
+const getArticleByUserId = function* () {
+    const userId = this.params.user_id
+    try {
+        const result = yield article.getArticleByUser(userId)
+        this.body = {
+            'code': 1,
+            'msg': 'Success',
+            'result': result
+        }
+    }catch(e){
+        this.body = {
+            'code': -1,
+            'msg':e.message
+        }
+    }
+}
 module.exports = {
     getArticleInfo,
     getArticleMsg,
     postArticleInfo,
     editArticleInfo,
     delArticleInfo,
-    getArticleCategory
+    getArticleCategory,
+    getArticleByUserId
 }

@@ -35,12 +35,21 @@ const cancelCollectionCategoryById = function* (user_id, category_id) {
 }
 const collectionArticleById = function* (data) {
 
-    const CollectionArticle = yield CollectionArticle.create({
+    const collectionArticle = yield CollectionArticle.create({
         'user_id': data.user_id,
         'article_id': data.article_id,
         'status': 1  
     })
     return collectionArticle
+}
+const collectionArticleByUserId = function* (article_id) {
+
+    const collectionArticleUser = yield CollectionArticle.findOne({
+        'where':{
+            'article_id': article_id
+        }  
+    })
+    return collectionArticleUser
 }
 const cancelCollectionArticleById = function* (user_id, category_id) {
     const cancelArticleCategory = yield CollectionArticle.destroy({
@@ -56,5 +65,6 @@ module.exports = {
     collectionCategoryById,
     cancelCollectionCategoryById,
     collectionArticleById,
-    cancelCollectionArticleById
+    cancelCollectionArticleById,
+    collectionArticleByUserId
 }

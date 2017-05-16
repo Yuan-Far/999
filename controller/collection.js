@@ -27,13 +27,16 @@ const cancelCollectionCategoryMsg = function* () {
 }
 const collectionArticleMsg = function* () {
     const data = this.request.body
-    const result = yield collection.collectionArticleById(data)  
-
-    // console.log(result)
-    if(result !== null ){
+    try {
+        const result = yield collection.collectionArticleById(data)  
         this.body = {
-            code: 1,
-            msg: 'Article Success' 
+            'code': 1,
+            'msg': 'Article Success' 
+        }
+    }catch(e) {
+        this.body = {
+            'code': -1,
+            'msg': e.message
         }
     }
 }

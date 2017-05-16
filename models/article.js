@@ -36,13 +36,13 @@ const getArticleByCategory = function* (category_id) {
     return articleByUser
 }
 const getArticleByUser = function* (id) {
-    const articleByUser = yield Article.findAll({
+    const articleByUserInfo = yield Article.findAll({
         where: {
             'user_id': id
         },
         arrtibutes: ['article_id', 'status', 'content', 'author', 'pic', 'title', 'create_time', 'user_id', 'category_id']
     })
-    return article
+    return articleByUserInfo
 }
 const createArticle = function* (data) {
     const article = yield Article.create({

@@ -18,6 +18,7 @@ router.delete('/del_category/:id', category.delCategoryInfo);
 router.get('/article_info', article.getArticleInfo);
 router.get('/article_msg/:id', article.getArticleMsg);
 router.get('/article_category/:category_id', article.getArticleCategory);
+router.get('/article_user/:user_id', article.getArticleByUserId);
 router.post('/create_article', article.postArticleInfo);
 router.put('/edit_article/:id', article.editArticleInfo);
 router.delete('/del_article/:id', article.delArticleInfo);
